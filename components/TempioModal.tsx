@@ -341,15 +341,11 @@ export const TempioModal: React.FC<TempioModalProps> = ({ isOpen, onClose }) => 
               <ul className="space-y-2 ml-4">
                 <li className="flex items-start">
                   <span className="text-emerald-400 mr-3 mt-1">•</span>
-                  <span>giacigli di pietra</span>
+                  <span>piccole casette di pietra che hanno subito il tempo</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-emerald-400 mr-3 mt-1">•</span>
-                  <span>piccoli altari laterali</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-emerald-400 mr-3 mt-1">•</span>
-                  <span>incisioni quasi cancellate dal tempo</span>
+                  <span>incisioni irriconoscibili cancellate dal tempo</span>
                 </li>
               </ul>
               <div className="mt-6 bg-emerald-900/20 p-6 rounded-xl border-l-4 border-emerald-500">

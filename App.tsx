@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { StatBlock } from './components/StatBlock';
+import eldricImage from './assets/Eldric.png';
 import { ImageGallery } from './components/ImageGallery';
 import { StoryModal } from './components/StoryModal';
 import { FableModal } from './components/FableModal';
@@ -16,10 +16,10 @@ import { SpiritiCorrottiModal } from './components/SpiritiCorrottiModal';
 import { GuardianoRadiciModal } from './components/GuardianoRadiciModal';
 import { TesoriS2Modal } from './components/TesoriS2Modal';
 import { DiarioMorghulModal } from './components/DiarioMorghulModal';
-import { MonsterStats } from './types';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('intro');
+  const [isEldricImageOpen, setIsEldricImageOpen] = useState<boolean>(false);
   const [isStoryModalOpen, setIsStoryModalOpen] = useState<boolean>(false);
   const [isFableModalOpen, setIsFableModalOpen] = useState<boolean>(false);
   const [isEldricGuideModalOpen, setIsEldricGuideModalOpen] = useState<boolean>(false);
@@ -34,44 +34,6 @@ const App: React.FC = () => {
   const [isGuardianoRadiciModalOpen, setIsGuardianoRadiciModalOpen] = useState<boolean>(false);
   const [isTesoriS2ModalOpen, setIsTesoriS2ModalOpen] = useState<boolean>(false);
   const [isDiarioMorghulModalOpen, setIsDiarioMorghulModalOpen] = useState<boolean>(false);
-
-  const bossStats: MonsterStats = {
-    name: "Bestia Sporale Minore",
-    tagline: "Boss Sessione 1",
-    size: "Media",
-    type: "Bestia corrotta",
-    alignment: "Neutrale",
-    ac: "12 (pelle fungina)",
-    hp: "38 (5d8 + 15)",
-    speed: "9 m",
-    abilities: {
-      str: { label: "FOR", value: 14, mod: "+2" },
-      dex: { label: "DES", value: 12, mod: "+1" },
-      con: { label: "COS", value: 16, mod: "+3" },
-      int: { label: "INT", value: 2, mod: "-4" },
-      wis: { label: "SAG", value: 10, mod: "+0" },
-      cha: { label: "CAR", value: 5, mod: "-3" },
-    },
-    savingThrows: "Costituzione +5",
-    resistances: ["Danni da veleno"],
-    specialAbilities: [
-        { name: "Nube Sporale (Ricarica 5-6)", description: "La bestia rilascia spore in un raggio di 3 m. TS Costituzione CD 12. Fallimento: 1d6 danni da veleno e velocità dimezzata per 1 turno. Successo: metà danni, nessun effetto secondario." }
-    ],
-    actions: [
-      { 
-        name: "Morso Fungino", 
-        description: "Attacco con arma da mischia: +4 a colpire, portata 1,5 m, un bersaglio. Danni: 1d8 + 2 perforanti + 1d4 veleno. Il bersaglio deve superare un TS Costituzione CD 12 o essere Avvelenato fino alla fine del suo prossimo turno." 
-      },
-      { 
-        name: "🐾 Graffio Fungino (attacco debole)", 
-        description: "DESCRIZIONE NARRATIVA: La bestia si avvicina strisciando. Le zampe anteriori sono coperte da escrescenze dure, come artigli di legno marcio. Non è un colpo potente, ma taglia la pelle lasciando residui violacei. ⸻ STATISTICHE: Attacco con arma da mischia: +4 a colpire, portata 1,5 m, un bersaglio. Danni: 1d4 + 1 danno da veleno (fisso). Effetto secondario (facoltativo, per colore): Il bersaglio sente bruciore e prurito, ma nessun TS richiesto. 👉 Usalo come attacco base quando: la creatura vuole \"tenere a distanza\", non vuoi rischiare di buttare giù un PG." 
-      },
-      { 
-        name: "🌫️ Soffio Putrescente (attacco ad area debole)", 
-        description: "Questo è molto tematico, poco letale, ma fastidioso. DESCRIZIONE NARRATIVA: La bestia si ferma. Il torace si gonfia in modo innaturale. Dalla bocca e dalle fessure del corpo esce un fiato caldo e umido, carico di spore. L'aria diventa irrespirabile per un istante. ⸻ STATISTICHE: Azione — Ricarica 4–6. Cono di 4,5 m. Tutte le creature nell'area devono superare un TS Costituzione CD 11. Fallimento: svantaggio al prossimo tiro per colpire prima della fine del turno successivo. Successo: Nessun danno, nessun effetto secondario." 
-      }
-    ]
-  };
 
   const sections = [
     { id: 'intro', title: 'Benvenuti a Selvarotta', emoji: '🌲' },
@@ -192,7 +154,23 @@ const App: React.FC = () => {
           <div className="bg-slate-900/80 rounded-3xl p-8 border border-slate-700 shadow-xl overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="space-y-4 col-span-2">
+              <div className="md:col-span-1">
+                <div 
+                  className="group relative cursor-zoom-in overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-emerald-500 transition-all duration-300 shadow-lg"
+                  onClick={() => setIsEldricImageOpen(true)}
+                >
+                  <img 
+                    src={eldricImage} 
+                    alt="Eldric Muschiosecco" 
+                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white bg-emerald-600/80 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Ingrandisci</span>
+                  </div>
+                </div>
+              </div>
+              <div className="md:col-span-2">
+              <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="bg-slate-800/50 p-4 rounded-xl">
                     <p className="text-slate-500 uppercase font-bold text-xs">Razza</p>
@@ -221,6 +199,7 @@ const App: React.FC = () => {
                   <li className="text-red-400/80">• Non combatte direttamente</li>
                 </ul>
               </div>
+            </div>
             </div>
           </div>
         </section>
@@ -341,10 +320,8 @@ const App: React.FC = () => {
           <div className="space-y-8">
             <div className="prose-rot text-lg bg-slate-800/30 p-8 rounded-2xl border border-slate-700">
                 <p className="font-bold text-emerald-400 uppercase text-xs mb-2 tracking-widest">Descrizione del Luogo</p>
-                <p>Gli alberi intorno alla radura sono bassi, piegati verso l’esterno come se evitassero il centro. Il terreno è scuro, spugnoso e rilascia un odore dolciastro e marcio. Al centro crescono <strong>tre grandi funghi viola</strong> disposti in cerchio perfetto.</p>
+                <p>Gli alberi intorno alla radura sono bassi, piegati verso l'esterno come se evitassero il centro. Il terreno è scuro, spugnoso e rilascia un odore dolciastro e marcio. Al centro crescono <strong>tre grandi funghi viola</strong> disposti in cerchio perfetto.</p>
             </div>
-
-            <StatBlock stats={bossStats} />
 
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
@@ -448,7 +425,7 @@ const App: React.FC = () => {
             </div>
 
             <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl space-y-6">
-                <p className="text-xl">Un antico tempio elfico-druidico sospeso tra alberi giganteschi. Qui si custodiva l’equilibrio tra decomposizione e rinascita.</p>
+                <p className="text-xl">Un antico tempio elfico-druidico sospeso tra alberi giganteschi. Qui si custodiva l'equilibrio tra decomposizione e rinascita.</p>
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-2">
                         <h4 className="text-purple-400 font-bold">Nemici:</h4>
@@ -541,6 +518,30 @@ const App: React.FC = () => {
       <GuardianoRadiciModal isOpen={isGuardianoRadiciModalOpen} onClose={() => setIsGuardianoRadiciModalOpen(false)} />
       <TesoriS2Modal isOpen={isTesoriS2ModalOpen} onClose={() => setIsTesoriS2ModalOpen(false)} />
       <DiarioMorghulModal isOpen={isDiarioMorghulModalOpen} onClose={() => setIsDiarioMorghulModalOpen(false)} />
+
+      {/* Modal immagine Eldric zoomata */}
+      {isEldricImageOpen && (
+        <div 
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm transition-all animate-in fade-in duration-300"
+          onClick={() => setIsEldricImageOpen(false)}
+        >
+          <div className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center">
+            <button 
+              className="absolute top-4 right-4 text-white hover:text-emerald-400 transition-colors p-2 bg-white/10 rounded-full z-10"
+              onClick={(e) => { e.stopPropagation(); setIsEldricImageOpen(false); }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <img 
+              src={eldricImage} 
+              alt="Eldric Muschiosecco" 
+              className="max-h-full max-w-full object-contain shadow-2xl rounded-lg animate-in zoom-in-95 duration-300"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

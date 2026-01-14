@@ -1,9 +1,5 @@
 
 import React, { useState } from 'react';
-import bestiaSporale from '../assets/Bestia sporale.png';
-import eldric from '../assets/Eldric.png';
-import pianaRespiroMarcio from '../assets/La piana del respiro marcio.png';
-import pianaTabellone from '../assets/La piana del respiro marcio TABELLONE.png';
 
 interface ImageProps {
   src: string;
@@ -72,34 +68,14 @@ const ImageItem: React.FC<ImageProps> = ({ src, alt, caption }) => {
  * @returns {JSX.Element} Una griglia responsive di immagini cliccabili con modal di ingrandimento
  */
 export const ImageGallery: React.FC = () => {
-  const localImages = [
-    { 
-      src: bestiaSporale, 
-      alt: "La Bestia Sporale", 
-      caption: "La Bestia Sporale: un animale morto mai tornato alla terra." 
-    },
-    { 
-      src: eldric, 
-      alt: "Eldric Muschiosecco", 
-      caption: "Eldric Muschiosecco: il Druido pentito del Circolo delle Spore." 
-    },
-    { 
-      src: pianaRespiroMarcio, 
-      alt: "La Piana del Respiro Marcio", 
-      caption: "La Piana del Respiro Marcio: il luogo della corruzione." 
-    },
-    { 
-      src: pianaTabellone, 
-      alt: "La Piana del Respiro Marcio - Tabellone", 
-      caption: "La Piana del Respiro Marcio: mappa tattica del tabellone." 
-    }
-  ];
-
+  // Le immagini sono state spostate nei rispettivi modal:
+  // - Bestia Sporale: BestiaSporaleModal
+  // - Eldric: Sezione PNG GUIDA in App.tsx
+  // - Piana: PianaModal
+  
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
-      {localImages.map((img, idx) => (
-        <ImageItem key={idx} {...img} />
-      ))}
+    <div className="my-12 text-center text-slate-400 italic">
+      <p>Le immagini sono disponibili nei rispettivi modal e sezioni.</p>
     </div>
   );
 };

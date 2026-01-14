@@ -7,7 +7,9 @@
  * @param {() => void} onClose - Callback per chiudere il modal
  * @returns {JSX.Element | null} Il modal se aperto, null altrimenti
  */
-import React from 'react';
+import React, { useState } from 'react';
+import pianaRespiroMarcio from '../assets/La piana del respiro marcio.png';
+import pianaTabellone from '../assets/La piana del respiro marcio TABELLONE.png';
 
 interface PianaModalProps {
   isOpen: boolean;
@@ -15,6 +17,8 @@ interface PianaModalProps {
 }
 
 export const PianaModal: React.FC<PianaModalProps> = ({ isOpen, onClose }) => {
+  const [isImageOpen, setIsImageOpen] = useState<string | null>(null);
+  
   if (!isOpen) return null;
 
   return (
@@ -59,6 +63,66 @@ export const PianaModal: React.FC<PianaModalProps> = ({ isOpen, onClose }) => {
               (antica radura del Cuore di Spora)
             </p>
           </div>
+
+          {/* Immagini zoomabili */}
+          <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div 
+              className="group relative cursor-zoom-in overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-purple-500 transition-all duration-300 shadow-lg"
+              onClick={() => setIsImageOpen('piana')}
+            >
+              <img 
+                src={pianaRespiroMarcio} 
+                alt="La Piana del Respiro Marcio" 
+                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white bg-purple-600/80 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Ingrandisci</span>
+              </div>
+              <div className="p-3 text-sm text-slate-300 bg-slate-900/80 italic text-center border-t border-slate-800">
+                La Piana del Respiro Marcio
+              </div>
+            </div>
+            <div 
+              className="group relative cursor-zoom-in overflow-hidden rounded-xl bg-slate-800 border border-slate-700 hover:border-purple-500 transition-all duration-300 shadow-lg"
+              onClick={() => setIsImageOpen('tabellone')}
+            >
+              <img 
+                src={pianaTabellone} 
+                alt="La Piana del Respiro Marcio - Tabellone" 
+                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white bg-purple-600/80 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Ingrandisci</span>
+              </div>
+              <div className="p-3 text-sm text-slate-300 bg-slate-900/80 italic text-center border-t border-slate-800">
+                La Piana del Respiro Marcio - Tabellone
+              </div>
+            </div>
+          </div>
+
+          {/* Modal immagine zoomata */}
+          {isImageOpen && (
+            <div 
+              className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm transition-all animate-in fade-in duration-300"
+              onClick={() => setIsImageOpen(null)}
+            >
+              <div className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center">
+                <button 
+                  className="absolute top-4 right-4 text-white hover:text-purple-400 transition-colors p-2 bg-white/10 rounded-full z-10"
+                  onClick={(e) => { e.stopPropagation(); setIsImageOpen(null); }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <img 
+                  src={isImageOpen === 'piana' ? pianaRespiroMarcio : pianaTabellone} 
+                  alt={isImageOpen === 'piana' ? "La Piana del Respiro Marcio" : "La Piana del Respiro Marcio - Tabellone"} 
+                  className="max-h-full max-w-full object-contain shadow-2xl rounded-lg animate-in zoom-in-95 duration-300"
+                />
+              </div>
+            </div>
+          )}
 
           {/* Descrizione del luogo */}
           <div className="space-y-6">
