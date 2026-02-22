@@ -16,6 +16,14 @@ import { SpiritiCorrottiModal } from './components/SpiritiCorrottiModal';
 import { GuardianoRadiciModal } from './components/GuardianoRadiciModal';
 import { TesoriS2Modal } from './components/TesoriS2Modal';
 import { DiarioMorghulModal } from './components/DiarioMorghulModal';
+import { EldricGuideS3Modal } from './components/EldricGuideS3Modal';
+import { CavernaViventeModal } from './components/CavernaViventeModal';
+import { GrottaCuoreModal } from './components/GrottaCuoreModal';
+import { MorghulModal } from './components/MorghulModal';
+import { SconfittaMorghulModal } from './components/SconfittaMorghulModal';
+import { TreScelteModal } from './components/TreScelteModal';
+import { TesoriS3Modal } from './components/TesoriS3Modal';
+import { EpilogoS3Modal } from './components/EpilogoS3Modal';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('intro');
@@ -34,6 +42,14 @@ const App: React.FC = () => {
   const [isGuardianoRadiciModalOpen, setIsGuardianoRadiciModalOpen] = useState<boolean>(false);
   const [isTesoriS2ModalOpen, setIsTesoriS2ModalOpen] = useState<boolean>(false);
   const [isDiarioMorghulModalOpen, setIsDiarioMorghulModalOpen] = useState<boolean>(false);
+  const [isEldricGuideS3ModalOpen, setIsEldricGuideS3ModalOpen] = useState<boolean>(false);
+  const [isCavernaViventeModalOpen, setIsCavernaViventeModalOpen] = useState<boolean>(false);
+  const [isGrottaCuoreModalOpen, setIsGrottaCuoreModalOpen] = useState<boolean>(false);
+  const [isMorghulModalOpen, setIsMorghulModalOpen] = useState<boolean>(false);
+  const [isSconfittaMorghulModalOpen, setIsSconfittaMorghulModalOpen] = useState<boolean>(false);
+  const [isTreScelteModalOpen, setIsTreScelteModalOpen] = useState<boolean>(false);
+  const [isTesoriS3ModalOpen, setIsTesoriS3ModalOpen] = useState<boolean>(false);
+  const [isEpilogoS3ModalOpen, setIsEpilogoS3ModalOpen] = useState<boolean>(false);
 
   const sections = [
     { id: 'intro', title: 'Benvenuti a Selvarotta', emoji: '🌲' },
@@ -445,6 +461,67 @@ const App: React.FC = () => {
                 <span className="text-4xl">⚔️</span>
                 <h2 className="text-4xl font-bold uppercase tracking-tighter">S3: Il Cuore di Spora</h2>
             </div>
+
+            {/* Pulsanti popup S3 */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+              <button
+                onClick={() => setIsEldricGuideS3ModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 hover:border-emerald-500/60 text-emerald-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>🧙‍♂️</span>
+                <span>La Guida di Eldric</span>
+              </button>
+              <button
+                onClick={() => setIsCavernaViventeModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 hover:border-purple-500/60 text-purple-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>🕳️</span>
+                <span>La Caverna Vivente</span>
+              </button>
+              <button
+                onClick={() => setIsGrottaCuoreModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 hover:border-emerald-500/60 text-emerald-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>💚</span>
+                <span>La Grotta del Cuore</span>
+              </button>
+              <button
+                onClick={() => setIsMorghulModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 hover:border-purple-500/60 text-purple-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>👻</span>
+                <span>Morghul</span>
+              </button>
+              <button
+                onClick={() => setIsSconfittaMorghulModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-500/40 hover:border-red-500/60 text-red-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>⚔️</span>
+                <span>La Sconfitta di Morghul</span>
+              </button>
+              <button
+                onClick={() => setIsTreScelteModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 hover:border-purple-500/60 text-purple-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>⚖️</span>
+                <span>Le Tre Scelte</span>
+              </button>
+              <button
+                onClick={() => setIsTesoriS3ModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/40 hover:border-amber-500/60 text-amber-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>💰</span>
+                <span>I Tesori</span>
+              </button>
+              <button
+                onClick={() => setIsEpilogoS3ModalOpen(true)}
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 hover:border-emerald-500/60 text-emerald-400 rounded-lg transition-all text-sm font-semibold"
+              >
+                <span>🌅</span>
+                <span>Epilogo</span>
+              </button>
+            </div>
+
             <div className="bg-purple-900/10 border border-purple-500/20 p-8 rounded-[3rem] space-y-8">
                 <div className="text-center max-w-xl mx-auto">
                     <h3 className="text-3xl font-serif italic mb-4">La Caverna Vivente</h3>
@@ -518,6 +595,16 @@ const App: React.FC = () => {
       <GuardianoRadiciModal isOpen={isGuardianoRadiciModalOpen} onClose={() => setIsGuardianoRadiciModalOpen(false)} />
       <TesoriS2Modal isOpen={isTesoriS2ModalOpen} onClose={() => setIsTesoriS2ModalOpen(false)} />
       <DiarioMorghulModal isOpen={isDiarioMorghulModalOpen} onClose={() => setIsDiarioMorghulModalOpen(false)} />
+
+      {/* Session 3 Modals */}
+      <EldricGuideS3Modal isOpen={isEldricGuideS3ModalOpen} onClose={() => setIsEldricGuideS3ModalOpen(false)} />
+      <CavernaViventeModal isOpen={isCavernaViventeModalOpen} onClose={() => setIsCavernaViventeModalOpen(false)} />
+      <GrottaCuoreModal isOpen={isGrottaCuoreModalOpen} onClose={() => setIsGrottaCuoreModalOpen(false)} />
+      <MorghulModal isOpen={isMorghulModalOpen} onClose={() => setIsMorghulModalOpen(false)} />
+      <SconfittaMorghulModal isOpen={isSconfittaMorghulModalOpen} onClose={() => setIsSconfittaMorghulModalOpen(false)} />
+      <TreScelteModal isOpen={isTreScelteModalOpen} onClose={() => setIsTreScelteModalOpen(false)} />
+      <TesoriS3Modal isOpen={isTesoriS3ModalOpen} onClose={() => setIsTesoriS3ModalOpen(false)} />
+      <EpilogoS3Modal isOpen={isEpilogoS3ModalOpen} onClose={() => setIsEpilogoS3ModalOpen(false)} />
 
       {/* Modal immagine Eldric zoomata */}
       {isEldricImageOpen && (
